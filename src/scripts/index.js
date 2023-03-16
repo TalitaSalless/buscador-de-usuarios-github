@@ -2,6 +2,7 @@ import { getUser } from '/src/scripts/services/user.js';
 import { getRepositories } from '/src/scripts/services/repositories.js';
 import { user } from '/src/scripts/objects/user.js';
 import { screen } from '/src/scripts/objects/screen.js';
+    
 
 document.getElementById('btn-search').addEventListener('click', () => {    // ADICIONANDO click no botão 
     const userName = document.getElementById('input-search').value   // pegando o nome do usuário que foi digitado 
@@ -37,6 +38,6 @@ async function getUserData(userName) {  //função que mostra na tela o usuario
     user.setInfo(userResponse);
     user.setRepositories(repositoriesResponse)
     screen.renderUser(user)
+    
 };
 
-console.log()
