@@ -32,17 +32,16 @@ function validateEmptyInput(userName) {
 
 async function getUserData(userName) {  //função que mostra na tela o usuario
   const userResponse = await getUser(userName);
+  const repositoriesResponse = await getRepositories(userName);
+  const userEvents = await getEvents(userName);
   
   if (userResponse.message === "Not Found") {
     screen.renderNotFound();
     return;
   }
 
-  const repositoriesResponse = await getRepositories(userName);
-  const eventsResponse = await getEvents(userName);
-
-  user.setInfo(userResponse);
+  user.setUserInfo(userResponse);
+  user.setEvents(userEvents);
   user.setRepositories(repositoriesResponse);
-  user.setEvents(eventsResponse);
   screen.renderUser(user);
 }
