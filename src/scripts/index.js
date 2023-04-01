@@ -7,7 +7,6 @@ import { screen } from "./objects/screen.js";
 
 
 document.getElementById("btn-search").addEventListener("click", () => {
-  // ADICIONANDO click no botão
   const userName = document.getElementById("input-search").value; // pegando o nome do usuário que foi digitado
   if (validateEmptyInput(userName)) return;
   getUserData(userName); // ele vai realizar a função apenas quando o nome estiver digitado e clicando no botão.
