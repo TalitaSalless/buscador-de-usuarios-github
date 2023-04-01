@@ -14,50 +14,52 @@ const screen = {
                                   </div>`; // MOSTRANDO NA TELA AS INFORMAÇÕES DO USUARIO
 
     let repositoriesItens = ""
-    user.repositories.forEach(repo => repositoriesItens += `<li><a href="${repo.html_url}" target = '_blank'>${repo.name}
-                                                                <div class="status-repositories">
-                                                                    <div> 🍴 ${repo.forks}</div>
-                                                                    <div> ✨ ${repo.stargazers_count}</div>
-                                                                    <div> 👀 ${repo.watchers}</div>
-                                                                    <div> 🖥️ ${repo.language}</div>
-                                                                </div>
-                                                                </a></li>`);
+    user.repositories.forEach(repo => repositoriesItens += `  <li>
+                                                                <a href="${repo.html_url}" target = '_blank'>${repo.name}
+                                                                  <div class="status-repositories">
+                                                                      <div> 🍴 ${repo.forks ?? "Sem forks"}</div>
+                                                                      <div> ✨ ${repo.stargazers_count ?? "Sem estrelas"}</div>
+                                                                      <div> 👀 ${repo.watchers ?? "Sem watchers"}</div>
+                                                                      <div> 🖥️ ${repo.language ?? "Sem linguagem"}</div>
+                                                                  </div>
+                                                                </a>
+                                                              </li>`);
 
     if (user.repositories.length > 0) {// MOSTRANDO NA TELA OS REPOSITORIOS DO USUARIO
-      this.userProfile.innerHTML += `<div class="repositories section">
+      this.userProfile.innerHTML += ` <div class="repositories section">
                                         <h2>Repositórios</h2>
                                         <ul>${repositoriesItens}</ul>
-                                    </div>`;
+                                      </div>`;
     }
 
     let eventsList = ""
     user.events.forEach(events => {
       if (events.type === "PushEvent" || events.type === "CreatedEvent") {
         events.payload.commits.forEach((msg) => {
-          eventsList += `<div class="eventos">
-                          <ul>
-                            <li>${events.repo.name} - ${msg.message}</li>
-                          </ul>
-                        </div>`;
+          eventsList += ` <div class="eventos">
+                            <ul>
+                              <li>${events.repo.name} - ${msg.message}</li>
+                            </ul>
+                          </div>`;
         });
       }
     });
 
     if (user.events.length > 0) {
-      this.userProfile.innerHTML += `<div class="events-list-itens">
+      this.userProfile.innerHTML += ` <div class="events-list-itens">
                                         <h1>Eventos</h1>
-                                            <ul>
-                                                <li>${eventsList}</li>
-                                            </ul>
-                                     </div>`}
+                                          <ul>
+                                            <li>${eventsList}</li>
+                                          </ul>
+                                      </div>`}
 
     if (user.events.length === 0) {
-      this.userProfile.innerHTML += `<div class="activities">
+      this.userProfile.innerHTML += ` <div class="activities">
                                         <h2>Eventos</h2><br>
                                           <ul>
-                                              <li>O usuário não possui novos eventos</li>
+                                            <li>O usuário não possui novos eventos</li>
                                           </ul>
-                                     </div>`}    
+                                      </div>`}    
   },
   renderNotFound() {
     this.userProfile.innerHTML = "<h3>Usuário não encontrado</h3>";
