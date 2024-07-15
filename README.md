@@ -11,4 +11,4 @@ Com este aplicativo, você pode:
 - Buscar usuários do GitHub digitando seu nome de usuário na barra de pesquisa
 - Exibir informações do usuário, como sua foto de perfil, nome de usuário, biografia, número de seguidores e número de repositórios públicos
 
-
+<img src"https://github.com/TalitaSalless/buscador-de-usuarios-github/blob/main/screencapture.png">
